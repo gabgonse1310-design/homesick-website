@@ -1,13 +1,22 @@
-Upload ALL files and the assets folder to the ROOT of the homesick-website GitHub repository.
+Homesick clean website patch
 
-Important: the five support buttons now point to files included in this package:
-privacy.html
-terms.html
-child-safety.html
-delete-account.html
-contact.html
+This keeps the earlier homepage design you preferred.
 
-Keep GitHub Pages set to main / (root).
+Upload ALL of these files to the ROOT of the homesick-website repository:
+- index.html
+- style.css
+- script.js
+- privacy.html
+- terms.html
+- child-safety.html
+- delete-account.html
+- contact.html
 
-The sun/moon button cycles: System -> Light -> Dark -> System.
-The ES/EN button switches language.
+There is NO assets folder in this version.
+The botanical details are deliberately subtle and are made in CSS, so there are no heavy background images.
+
+GitHub Pages:
+Branch: main
+Folder: /(root)
+
+The existing support cards now open the included HTML pages.

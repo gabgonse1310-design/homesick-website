@@ -1,1 +1,32 @@
-(()=>{const L=document.getElementById('lang'),T=document.getElementById('theme'),els=document.querySelectorAll('[data-en][data-es]');let lang=localStorage.getItem('hs-lang')||((navigator.language||'en').startsWith('es')?'es':'en');let theme=localStorage.getItem('hs-theme')||'system';function applyLang(){document.documentElement.lang=lang;els.forEach(e=>e.textContent=e.dataset[lang]);L.textContent=lang==='en'?'ES':'EN'}function darkWanted(){return theme==='dark'||(theme==='system'&&matchMedia('(prefers-color-scheme:dark)').matches)}function applyTheme(){document.body.classList.toggle('dark',darkWanted());T.textContent=darkWanted()?'☾':'☀';T.title=theme==='system'?'System theme':theme+' theme'}L.onclick=()=>{lang=lang==='en'?'es':'en';localStorage.setItem('hs-lang',lang);applyLang()};T.onclick=()=>{theme=theme==='system'?'light':theme==='light'?'dark':'system';localStorage.setItem('hs-theme',theme);applyTheme()};matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(theme==='system')applyTheme()});applyLang();applyTheme()})();
+(() => {
+  const button = document.getElementById('languageToggle');
+  const label = document.getElementById('languageLabel');
+  const translatable = document.querySelectorAll('[data-en][data-es]');
+
+  const saved = localStorage.getItem('homesick-language');
+  const browserLanguage = (navigator.language || 'en').toLowerCase();
+  let language = saved || (browserLanguage.startsWith('es') ? 'es' : 'en');
+
+  const applyLanguage = (lang) => {
+    language = lang;
+    document.documentElement.lang = lang;
+
+    translatable.forEach((element) => {
+      element.textContent = element.dataset[lang];
+    });
+
+    label.textContent = lang === 'en' ? 'ES' : 'EN';
+    button.setAttribute(
+      'aria-label',
+      lang === 'en' ? 'Cambiar a español' : 'Switch to English'
+    );
+
+    localStorage.setItem('homesick-language', lang);
+  };
+
+  button.addEventListener('click', () => {
+    applyLanguage(language === 'en' ? 'es' : 'en');
+  });
+
+  applyLanguage(language);
+})();
